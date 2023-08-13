@@ -1,0 +1,14 @@
+ingress:
+  certDuration: 12h
+  certKeySize: 4096
+  domainName: fiduciaedge.internal
+  certIssuer: external-domain-server-cert
+
+
+  routes:
+  - hostname: vault.fiduciaedge.internal
+    backendServiceName: vault
+    backendServicePort: 8443
+    backendServiceScheme: https
+    namespace: default
+

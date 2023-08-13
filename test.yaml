@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: vault-server-transport
+  namespace: default
+
+
+spec:
+  serverName: vault
+  insecureSkipVerify: true
+  forwardingTimeouts:
+    dialTimeout: 42s
+    responseHeaderTimeout: 42s
+    idleConnTimeout: 42s

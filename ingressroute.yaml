@@ -1,0 +1,75 @@
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-vault-fiduciaedge-internal
+  namespace: default
+spec:
+  secretName: ingress-vault-fiduciaedge-internal
+  duration: 12h
+  issuerRef:
+    name: external-domain-server-cert
+    kind: ClusterIssuer
+  commonName: vault.fiduciaedge.internal
+  dnsNames:
+  - vault.fiduciaedge.internal
+  privateKey:
+    algorithm: RSA
+    size: 4096
+
+---
+
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: vault-server-transport
+  namespace: default
+
+
+spec:
+  serverName: vault
+  insecureSkipVerify: true
+  forwardingTimeouts:
+    dialTimeout: 42s
+    responseHeaderTimeout: 42s
+    idleConnTimeout: 42s
+
+
+
+---
+
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-vault-fiduciaedge-internal
+  namespace: default
+  labels:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("vault.fiduciaedge.internal")
+    kind: Rule
+    services:
+    - name: vault
+      port: 8443
+      scheme: https
+      passHostHeader: true
+      serversTransport: vault-server-transport
+  tls:
+    secretName: ingress-vault-fiduciaedge-internal
+    domains:
+    - main: fiduciaedge.internal
+      sans:
+      - vault.fiduciaedge.internal
+    # mtls
+    # options:
+    #   name: traefik-client-auth
+    #   namespace: $NAMESPACE_TLS_OPTION
+
+

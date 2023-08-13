@@ -1,0 +1,7 @@
+certificate:
+    profile: external-domain-client-cert
+    commonName: gary.gan@fiduciaedge.com
+    duration: 8192h
+    keysize: 4096
+    namespace: default
+

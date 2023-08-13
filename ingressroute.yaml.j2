@@ -1,0 +1,76 @@
+{% for item in ingress.routes %}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-{{ item.hostname | replace('.','-')  }}
+  namespace: {{ item.namespace }}
+spec:
+  secretName: ingress-{{ item.hostname | replace('.','-') }}
+  duration: {{ ingress.certDuration }}
+  issuerRef:
+    name: {{ ingress.certIssuer }}
+    kind: ClusterIssuer
+  commonName: {{ item.hostname }}
+  dnsNames:
+  - {{ item.hostname }}
+  privateKey:
+    algorithm: RSA
+    size: {{ ingress.certKeySize }}
+
+---
+
+{% if item.backendServiceScheme == 'https' %}
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: {{ item.backendServiceName }}-server-transport
+  namespace: {{ item.namespace }}
+
+
+spec:
+  serverName: {{ item.backendServiceName }}
+  insecureSkipVerify: true
+  forwardingTimeouts:
+    dialTimeout: 42s
+    responseHeaderTimeout: 42s
+    idleConnTimeout: 42s
+{% endif %}
+
+
+---
+
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-{{ item.hostname | replace('.','-') }}
+  namespace: {{ item.namespace }}
+  labels:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("{{ item.hostname }}")
+    kind: Rule
+    services:
+    - name: {{ item.backendServiceName }}
+      port: {{ item.backendServicePort }}
+      scheme: {{ item. backendServiceScheme }}
+      passHostHeader: true
+      {% if item.backendServiceScheme == 'https' %}serversTransport: {{ item.backendServiceName }}-server-transport{% endif %}
+  tls:
+    secretName: ingress-{{ item.hostname | replace('.','-') }}
+    domains:
+    - main: {{ ingress.domainName }}
+      sans:
+      - {{ item.hostname }}
+    # mtls
+    # options:
+    #   name: traefik-client-auth
+    #   namespace: $NAMESPACE_TLS_OPTION
+
+
+{% endfor %}

@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ certificate.commonName | replace('.','-') | replace('@','-') }}
+  namespace: {{ certificate.namespace }}
+spec:
+  secretName: ingress-{{ certificate.commonName | replace('.','-') | replace('@','-') }}
+  duration: {{ certificate.duration }}
+  issuerRef:
+    name: {%- if certificate.profile == 'external-domain-server-cert' %} ingressRoute.profile.externalDomain.serverCert.certIssuerName
+          {%- elif certificate.profile == 'external-domain-client-cert' %} ingressRoute.profile.externalDomain.clientCert.certIssuerName
+          {%- elif certificate.profile == 'internal-domain-server-cert' %} ingressRoute.profile.internalDomain.serverCert.certIssuerName
+          {%- elif certificate.profile == 'internal-domain-client-cert' %} ingressRoute.profile.internalDomain.clientCert.certIssuerName
+          {%- endif %}
+    kind: ClusterIssuer
+  commonName: {{ certificate.commonName }}
+  dnsNames:
+  - {{ certificate.commonName }}
+  privateKey:
+    algorithm: RSA
+    size: {{ certificate.keysize }}
+  

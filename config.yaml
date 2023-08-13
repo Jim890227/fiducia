@@ -1,0 +1,23 @@
+certificate:
+    profile: external-domain-client-cert
+    commonName: gary.gan@fiduciaedge.com
+    duration: 8192h
+    keysize: 4096
+    namespace: default
+
+ingressRoute:
+    profile:
+        externalDomain:
+            serverCert:
+                certIssuerName: vault-issuer-servercert-external-domain
+                domainName: fiduciaedge.internal
+            clientCert:
+                certIssuerName: vault-issuer-clientcert-external-domain
+                domainName: fiduciaedge.internal
+        internalDomain:
+            serverCert:
+                certIssuerName: vault-issuer-servercert-internal-domain
+                domainName: cluster.local
+            clientCert:
+                certIssuerName: vault-issuer-clientcert-internal-domain
+                domainName: cluster.local

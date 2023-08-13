@@ -1,0 +1,11 @@
+/home/fiducia/Downloads/project1/target/release/deps/anstyle_parse-adf8025b4bb8d6d6.rmeta: /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/lib.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/params.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/mod.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/definitions.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/table.rs
+
+/home/fiducia/Downloads/project1/target/release/deps/libanstyle_parse-adf8025b4bb8d6d6.rlib: /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/lib.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/params.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/mod.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/definitions.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/table.rs
+
+/home/fiducia/Downloads/project1/target/release/deps/anstyle_parse-adf8025b4bb8d6d6.d: /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/lib.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/params.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/mod.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/definitions.rs /home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/table.rs
+
+/home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/lib.rs:
+/home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/params.rs:
+/home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/mod.rs:
+/home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/definitions.rs:
+/home/fiducia/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.2.0/src/state/table.rs:

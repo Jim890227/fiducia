@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gary-gan-fiduciaedge-com
+  namespace: default
+spec:
+  secretName: ingress-gary-gan-fiduciaedge-com
+  duration: 8192h
+  issuerRef:
+    name: ingressRoute.profile.externalDomain.clientCert.certIssuerName
+    kind: ClusterIssuer
+  commonName: gary.gan@fiduciaedge.com
+  dnsNames:
+  - gary.gan@fiduciaedge.com
+  privateKey:
+    algorithm: RSA
+    size: 4096
+  

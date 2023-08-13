@@ -1,0 +1,7 @@
+certificate:
+    profile: external-domain-server-cert
+    commonName: vault.fiduciaedge.internal
+    duration: 8192h
+    keysize: 4096
+    namespace: default
+
